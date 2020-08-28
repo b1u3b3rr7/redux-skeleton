@@ -1,0 +1,20 @@
+import React from 'react';
+import AddButton from './AddButton';
+import SubButton from './SubButton';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <span>{this.props.store.getState().data.number}</span>
+        <AddButton store={this.props.store} /><SubButton store={this.props.store} />
+      </div>
+    );
+  }
+}
+
+export default App;
