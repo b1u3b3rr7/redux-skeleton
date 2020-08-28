@@ -1,20 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { add } from './actions';
 
 class AddButton extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            <input value={'+'} type="button" onClick={this.addNumber} />
+            <input value={'+'} type="button" onClick={this.props.addNumber} />
         )
     }
-
-    addNumber = () => {
-        this.props.store.dispatch(add());
-    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addNumber: () => dispatch(add())
+    };
+};
+
+AddButton = connect(null, mapDispatchToProps)(AddButton);
 
 export default AddButton;

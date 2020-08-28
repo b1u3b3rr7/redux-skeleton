@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { sub } from './actions';
 
 class SubButton extends React.Component {
@@ -8,13 +9,17 @@ class SubButton extends React.Component {
 
     render() {
         return (
-            <input value={'-'} type="button" onClick={this.subNumber} />
+            <input value={'-'} type="button" onClick={this.props.subNumber} />
         )
     }
-
-    subNumber = () => {
-        this.props.store.dispatch(sub());
-    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        subNumber: () => dispatch(sub())
+    }
+};
+
+SubButton = connect(null, mapDispatchToProps)(SubButton);
 
 export default SubButton;

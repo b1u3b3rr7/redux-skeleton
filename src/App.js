@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import AddButton from './AddButton';
 import SubButton from './SubButton';
 
@@ -10,11 +11,19 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <span>{this.props.store.getState().data.number}</span>
-        <AddButton store={this.props.store} /><SubButton store={this.props.store} />
+        <span>{this.props.number}</span><br />
+        <AddButton /><SubButton />
       </div>
     );
   }
 }
+
+let mapStateToProps = (state) => {
+  return {
+    number: state.data.number
+  };
+};
+
+App = connect(mapStateToProps, null)(App);
 
 export default App;
